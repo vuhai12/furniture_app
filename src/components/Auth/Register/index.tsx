@@ -14,9 +14,9 @@ const Register = ({
   setIsShowPopup: (isShowPopup: boolean) => void;
 }) => {
   const registerSchema = z.object({
-    email: z.string().min(5, "Vui lòng nhập email").email("Email không hợp lệ"),
-    password: z.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
-    name: z.string().min(3, "Tên phải có ít nhất 3 ký tự"),
+    email: z.string().min(5, "Please enter email").email("Email is invalid"),
+    password: z.string().min(6, "Password must be at least 6 character"),
+    name: z.string().min(3, "Name must be at least 3 character"),
   });
 
   type RegisterFormData = z.infer<typeof registerSchema>;
@@ -39,7 +39,7 @@ const Register = ({
         if (error.response?.status === 409) {
           setError("email", {
             type: "server",
-            message: "Email này đã được đăng ký",
+            message: "Email is already registered",
           });
           return;
         }
