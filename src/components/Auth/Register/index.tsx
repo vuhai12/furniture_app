@@ -67,7 +67,9 @@ const Register = ({
               placeholder="Name"
             />
             {errors.name && (
-              <p style={{ color: "red" }}>{errors.name.message}</p>
+              <div className="mt-2 rounded-md bg-red-50 px-3 py-2 text-sm text-red-600 border border-red-200">
+                {errors.name.message}
+              </div>
             )}
           </div>
 
@@ -78,7 +80,9 @@ const Register = ({
               placeholder="Email"
             />
             {errors.email && (
-              <p style={{ color: "red" }}>{errors.email.message}</p>
+              <div className="mt-2 rounded-md bg-red-50 px-3 py-2 text-sm text-red-600 border border-red-200">
+                {errors.email.message}
+              </div>
             )}
           </div>
 
@@ -89,7 +93,9 @@ const Register = ({
               placeholder="Password"
             />
             {errors.password && (
-              <p style={{ color: "red" }}>{errors.password.message}</p>
+              <div className="mt-2 rounded-md bg-red-50 px-3 py-2 text-sm text-red-600 border border-red-200">
+                {errors.password.message}
+              </div>
             )}
           </div>
 
