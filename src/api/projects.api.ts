@@ -1,6 +1,8 @@
 import { axiosInstance } from "./axiosInstance";
 
 export const getProjectsApi = async () => {
-  const res = await axiosInstance.get("/projects");
-  return res;
+  try {
+    const res = await axiosInstance.get("/projects");
+    return res.data;
+  } catch (error) {}
 };

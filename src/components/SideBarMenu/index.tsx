@@ -108,7 +108,10 @@ const SideBarMenu = ({
         />
       )}
       {isShowPopupRegister && (
-        <Register setIsShowPopupRegister={setIsShowPopupRegister} />
+        <Register
+          setIsShowPopupRegister={setIsShowPopupRegister}
+          setIsShowPopup={setIsShowPopup}
+        />
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import ProjectLayout from "@layout/ProjectLayout.tsx";
 import { getProjectDetailService } from "@services/projectDetail.service";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ProjectDetail = () => {

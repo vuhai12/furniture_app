@@ -1,5 +1,5 @@
 import { UserCircle, X } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "@assets/Logo - White.svg";
 import Login from "@components/Auth/Login";
@@ -75,7 +75,10 @@ const HamburgerMenu = ({
         />
       )}
       {isShowPopupRegister && (
-        <Register setIsShowPopupRegister={setIsShowPopupRegister} />
+        <Register
+          setIsShowPopupRegister={setIsShowPopupRegister}
+          setIsShowPopup={setIsShowPopup}
+        />
       )}
     </div>
   );

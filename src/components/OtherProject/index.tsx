@@ -6,7 +6,13 @@ import { useNavigate, useParams } from "react-router-dom";
 const OtherProject = () => {
   const [curentSlide, setCurrentSlide] = useState(0);
   const [listProject, setListProject] = useState<
-    { id: string; description: string; title: string; cover_image: string }[]
+    {
+      id: string;
+      description: string;
+      title: string;
+      cover_image: string;
+      category_id: string;
+    }[]
   >([]);
 
   const navigate = useNavigate();
@@ -15,7 +21,7 @@ const OtherProject = () => {
   const getProjects = async () => {
     try {
       const data = await getProjectsService();
-      setListProject(data.data);
+      setListProject(data);
     } catch (error) {}
   };
 

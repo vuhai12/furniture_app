@@ -3,7 +3,7 @@ import image2 from "@assets/Section3/image2.jpg";
 import image3 from "@assets/Section3/image3.jpg";
 
 import classNames from "classnames";
-import { PlusIcon, MinusIcon } from "@heroicons/react/24/solid";
+import { PlusIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
 const dataSection3 = [

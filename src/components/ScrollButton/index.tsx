@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
 
 const ScrollButton = () => {

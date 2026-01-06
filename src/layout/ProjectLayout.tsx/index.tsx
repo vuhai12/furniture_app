@@ -14,6 +14,7 @@ import { supabase } from "@api/supabaseClient";
 
 const ProjectLayout = ({ children }: { children: ReactNode }) => {
   const [isShowSidebar, setIsShowSidebar] = useState(false);
+  const { setKeyword } = useApp();
   const {
     user,
     setUser,
@@ -39,8 +40,6 @@ const ProjectLayout = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem("role");
     setUser(null);
   };
-
-  const { keyword, setKeyword } = useApp();
 
   return (
     <div className="flex gap-[50px] xl:max-w-[1200px] mx-auto md:px-[50px] lg:pl-0 lg:pr-[50px]  maxMd:px-[20px]">

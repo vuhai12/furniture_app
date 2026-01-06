@@ -1,5 +1,4 @@
 import { logonApi, registerAuth } from "@api/auth.api";
-import { supabase } from "@api/supabaseClient";
 
 export const loginServices = async (payload: {
   email: string;
@@ -26,7 +25,6 @@ export const registerServices = async (payload: {
 }) => {
   try {
     const data = await registerAuth(payload);
-
     return data;
   } catch (error) {
     throw error;

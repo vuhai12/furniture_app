@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { HomePage } from "@constants/routes";
 import logo from "@assets/Logo.svg";
 import Login from "@components/Auth/Login";
 import Register from "@components/Auth/Register";
 import HamburgerMenu from "@components/HamburgerMenu";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Menu, UserCircle } from "lucide-react";
 import { useApp } from "../../context/AppContext";
 import { supabase } from "@api/supabaseClient";

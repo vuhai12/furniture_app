@@ -7,7 +7,7 @@ export const registerAuth = async (payload: {
   password: string;
 }) => {
   try {
-    const res = await axiosApp.post("/api/register", payload);
+    await axiosApp.post("/api/register", payload);
   } catch (error) {
     throw error;
   }

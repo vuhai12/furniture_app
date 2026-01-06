@@ -24,7 +24,6 @@ const Login = ({
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset,
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });

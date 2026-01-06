@@ -1,13 +1,5 @@
 import ProjectLayout from "@layout/ProjectLayout.tsx";
-import React, { useEffect, useState } from "react";
-import image1 from "@assets/Office/image1.jpg";
-import image2 from "@assets/Office/image2.jpg";
-import image3 from "@assets/Office/image3.jpg";
-import image4 from "@assets/Office/image4.jpg";
-import image5 from "@assets/Office/image5.jpg";
-import image6 from "@assets/Office/image6.jpg";
-import image7 from "@assets/Office/image7.jpg";
-import image8 from "@assets/Office/image8.jpg";
+import { useEffect, useState } from "react";
 
 import SectionHeroProject from "./SectionHeroProject";
 import Pagination from "@components/Pagination";
@@ -17,17 +9,6 @@ import { getProjectsByCategoriesServices } from "@services/categories.services";
 import { useApp } from "../../context/AppContext";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useNavigate } from "react-router-dom";
-
-const dataProjects = [
-  { id: 1, image: image1, title: "HYATT REGENCY HA LONG - ALL DAY DINING" },
-  { id: 2, image: image2, title: "HYATT PLACE HA LONG - KING SUITE" },
-  { id: 3, image: image3, title: "GARRYA DA NANG - PUBLIC AREA" },
-  { id: 4, image: image4, title: "L'AURORA RESORT - THE FLOW SPA" },
-  { id: 5, image: image5, title: "SKY PENTHOUSE" },
-  { id: 6, image: image6, title: "L'AURORA RESORT - CLUBHOUSE" },
-  { id: 7, image: image7, title: "SKY PENTHOUSE" },
-  { id: 8, image: image8, title: "HYATT REGENCY HA LONG - ALL DAY DINING" },
-];
 
 const Projects = () => {
   const { categorySlug } = useParams();

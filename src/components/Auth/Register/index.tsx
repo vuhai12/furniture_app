@@ -32,7 +32,7 @@ const Register = ({
   });
   const onSubmit = async (dataFormRegister: RegisterFormData) => {
     try {
-      const data = await registerServices(dataFormRegister);
+      await registerServices(dataFormRegister);
       reset();
     } catch (error) {
       if (error instanceof AxiosError) {

@@ -9,13 +9,12 @@ import ScrollButton from "@components/ScrollButton";
 import gsap from "gsap";
 import { useEffect, useState } from "react";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const [currentXSection1, setCurrentXSection1] = useState(0);
   const [currentXSection3, setCurrentXSection3] = useState(0);
   // const location = useLocation();
-  const [allowPin, setAllowPin] = useState(true);
+  const [allowPin, _] = useState(true);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const sections = gsap.utils.toArray<HTMLElement>(".short");

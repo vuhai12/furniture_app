@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import imageBg1 from "@assets/Office/bg1.jpeg";
 import imageBg2 from "@assets/Office/bg2.jpeg";
 import imageBg3 from "@assets/Office/bg3.avif";
@@ -58,9 +58,8 @@ const SectionHeroProject = () => {
         })}
       </div>
 
-      {/* <div className="absolute inset-0 z-[88] bg-gradient-to-t from-gray-800 to-gray-200"></div> */}
       <div className="flex gap-[20px] absolute bottom-[30px] left-1/2 -translate-x-1/2">
-        {dataSectionHero.map((item, index) => {
+        {dataSectionHero.map((_, index) => {
           return (
             <div
               className={classNames(
