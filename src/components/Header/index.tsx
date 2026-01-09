@@ -7,11 +7,6 @@ import { Link } from "react-router-dom";
 import { Menu, UserCircle } from "lucide-react";
 import { useApp } from "../../context/AppContext";
 import { supabase } from "@api/supabaseClient";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import ScrollToPlugin from "gsap/ScrollToPlugin";
-
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const dataMenu = [
   {
@@ -70,18 +65,18 @@ const Header = () => {
     setUser(localStorage.getItem("user"));
   }, []);
 
-  gsap.registerPlugin(ScrollToPlugin);
   const handleScroll = (id: string) => {
-    const trigger = ScrollTrigger.getById(id);
+    const element = document.getElementById(id);
+    if (!element) return;
 
-    if (trigger) {
-      gsap.to(trigger, {
-        scroll: trigger.start,
-        duration: 0.8,
-        ease: "power2.out",
-      });
-      return;
-    }
+    const yOffset = -120;
+    const y =
+      element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
+    });
   };
 
   const handleLogout = async () => {

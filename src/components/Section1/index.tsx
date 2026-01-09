@@ -1,10 +1,6 @@
-import image1 from "@assets/Section1/image1.jpg";
-import image2 from "@assets/Section1/image2.png";
-import image3 from "@assets/Section1/image3.jpg";
 import interiorDesignIcon from "@assets/Section1/interiorDesignIcon.svg";
 import lightingDesignIcon from "@assets/Section1/lightingDesignIcon.svg";
 import outdoorDesignIcon from "@assets/Section1/outdoorDesignIcon.svg";
-import { useEffect, useState } from "react";
 
 const servicesData = [
   {
