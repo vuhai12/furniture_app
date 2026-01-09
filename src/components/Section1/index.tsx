@@ -31,6 +31,8 @@ const Section1 = ({ currentX }: { currentX: number }) => {
       setCurrentWidth(document.documentElement.clientWidth);
     };
     updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
   }, []);
   return (
     <>
