@@ -46,7 +46,7 @@ const Hero = () => {
               children="Start Project"
             />
           </div>
-          <div className="flex maxMd:mt-[30px] flex-wrap gap-[30px]  maxMd:justify-between font-normal  w-full">
+          <div className="flex maxMd:mt-[50px] flex-wrap gap-[30px]  maxMd:justify-between font-normal  w-full">
             {statsData.map((item, index) => {
               return (
                 <div key={index}>

@@ -61,19 +61,21 @@ const HomePage = () => {
     <>
       <MainLayout>
         <div className="xl:gap-[150px] mt-[100px] flex flex-col gap-[100px] parent">
-          <div className="section short" id="home">
+          <div className="md:section md:short" id="home">
             <Hero />
           </div>
-          <div className="short section" id="service">
-            <Section1 currentX={currentXSection1} />
+          <div className="md:short md:section" id="service">
+            {/* <Section1 currentX={currentXSection1} /> */}
+            <Section1 />
           </div>
-          <div className="short section" id="vision">
+          <div className="md:short md:section" id="vision">
             <Section2 />
           </div>
-          <div className="short section" id="process">
-            <Section3 currentX={currentXSection3} />
+          <div className="md:short md:section" id="process">
+            {/* <Section3 currentX={currentXSection3} /> */}
+            <Section3 />
           </div>
-          <div className="section short" id="testimonials">
+          <div className="md:section md:short" id="testimonials">
             <Section4 />
           </div>
           <div className="">
