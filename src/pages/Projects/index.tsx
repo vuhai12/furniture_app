@@ -1,14 +1,13 @@
-import ProjectLayout from "@layout/ProjectLayout.tsx";
 import { useEffect, useState } from "react";
+import { useApp } from "../../context/AppContext";
+import { useDebounce } from "../../hooks/useDebounce";
+import { data, useNavigate, useParams } from "react-router-dom";
 
+import { getProjectsByCategoriesServices } from "@services/categories.services";
+import ProjectLayout from "@layout/ProjectLayout.tsx";
 import SectionHeroProject from "./SectionHeroProject";
 import Pagination from "@components/Pagination";
 import OtherProject from "@components/OtherProject";
-import { useParams } from "react-router-dom";
-import { getProjectsByCategoriesServices } from "@services/categories.services";
-import { useApp } from "../../context/AppContext";
-import { useDebounce } from "../../hooks/useDebounce";
-import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
   const { categorySlug } = useParams();
@@ -16,18 +15,16 @@ const Projects = () => {
   const [listProjects, setListProjects] = useState<
     { id: string; title: string; description: string; cover_image: string }[]
   >([]);
-
   const { keyword, listCategories } = useApp();
   const debounceKeyword = useDebounce(keyword, 500);
-
   const navigate = useNavigate();
 
   const activeCategoryId = listCategories.find(
-    (item) => item.slug == categorySlug
+    (item) => item.slug == categorySlug,
   )?.id;
 
   useEffect(() => {
-    if (!activeCategoryId) return;
+    // if (!activeCategoryId) return;
     getProjectByCategoryId();
   }, [activeCategoryId, debounceKeyword]);
 
@@ -40,7 +37,7 @@ const Projects = () => {
       activeCategoryId,
       debounceKeyword,
       from,
-      to
+      to,
     );
     setListProjects(data?.data);
   };
