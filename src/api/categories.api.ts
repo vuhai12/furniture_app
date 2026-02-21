@@ -13,7 +13,7 @@ export const getProjectsByCategoriesApi = async (
   category_id: string | null | undefined,
   keyword: string | undefined,
   from: number,
-  to: number
+  to: number,
 ) => {
   try {
     const res = await axiosInstance.get("/projects", {

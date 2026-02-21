@@ -13,50 +13,48 @@ const Pagination = ({
   limit: number;
 }) => {
   const totalPages = Math.ceil(totalItems / limit);
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  if (totalPages <= 1) return null;
 
   const handlePre = () => {
-    if (currentPage <= 1) return;
-    setCurrentPage((page) => page - 1);
+    if (currentPage > 1) setCurrentPage((p) => p - 1);
   };
 
   const handleNext = () => {
-    if (currentPage >= totalPages) return;
-    setCurrentPage((page) => page + 1);
+    if (currentPage < totalPages) setCurrentPage((p) => p + 1);
   };
 
-  const handleChangePage = (page: number) => {
-    setCurrentPage(page);
-  };
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
   return (
-    <div className="flex gap-[20px]">
-      <div
+    <div className="flex items-center gap-3 flex-wrap">
+      <button
         onClick={handlePre}
-        className="cursor-pointer w-[40px] h-[40px] bg-black text-white rounded-[50%] flex justify-center items-center text-[14px]"
+        className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-black hover:text-white transition"
       >
-        <ChevronLeft className="w-6 h-6" />
-      </div>
-      <div className="flex gap-[20px] font-semibold">
-        {pages.map((page) => {
-          return (
-            <div
-              onClick={() => handleChangePage(page)}
-              className={classNames(
-                "cursor-pointer w-[40px] h-[40px] text-white rounded-[50%] flex justify-center items-center text-[14px]",
-                page == currentPage ? "bg-gray-400 " : "bg-black "
-              )}
-            >
-              {page}
-            </div>
-          );
-        })}
-      </div>
-      <div
+        <ChevronLeft size={18} />
+      </button>
+
+      {pages.map((page) => (
+        <button
+          key={page}
+          onClick={() => setCurrentPage(page)}
+          className={classNames(
+            "w-10 h-10 rounded-full text-sm font-medium transition",
+            page === currentPage
+              ? "bg-black text-white"
+              : "border hover:bg-black hover:text-white",
+          )}
+        >
+          {page}
+        </button>
+      ))}
+
+      <button
         onClick={handleNext}
-        className="cursor-pointer w-[40px] h-[40px] bg-black text-white rounded-[50%] flex justify-center items-center text-[14px]"
+        className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-black hover:text-white transition"
       >
-        <ChevronRight className="w-6 h-6" />
-      </div>
+        <ChevronRight size={18} />
+      </button>
     </div>
   );
 };

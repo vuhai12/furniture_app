@@ -46,13 +46,10 @@ const ProjectLayout = ({ children }: { children: ReactNode }) => {
       <div
         className={classNames(
           "lg:block lg:w-[250px]",
-          isShowSidebar == true ? "block fixed z-[100]" : "hidden"
+          isShowSidebar == true ? "block fixed z-[100]" : "hidden",
         )}
       >
-        <SideBarMenu
-          setIsShowSidebar={setIsShowSidebar}
-          isShowSidebar={isShowSidebar}
-        />
+        <SideBarMenu />
       </div>
 
       <div className="lg:flex-[1] flex flex-col overflow-auto">

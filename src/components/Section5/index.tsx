@@ -7,16 +7,17 @@ import { subscribersServices } from "../../services/subscribers.service";
 import { AxiosError } from "axios";
 import { useState } from "react";
 
-const Section5 = () => {
-  const subscribeSchema = z.object({
-    email: z
-      .string()
-      .min(10, "Email phải có ít nhất 10 ký tự!")
-      .email("Email không hợp lệ"),
-  });
-  const [successMessage, setSuccessMessage] = useState("");
+const subscribeSchema = z.object({
+  email: z
+    .string()
+    .min(10, "Email phải có ít nhất 10 ký tự!")
+    .email("Email không hợp lệ"),
+});
 
-  type subscribeFormData = z.infer<typeof subscribeSchema>;
+type SubscribeFormData = z.infer<typeof subscribeSchema>;
+
+const Section5 = () => {
+  const [successMessage, setSuccessMessage] = useState("");
 
   const {
     register,
@@ -24,17 +25,18 @@ const Section5 = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<subscribeFormData>({
+  } = useForm<SubscribeFormData>({
     resolver: zodResolver(subscribeSchema),
   });
 
-  const onSubmit = async (dataForm: subscribeFormData) => {
+  const onSubmit = async (data: SubscribeFormData) => {
     try {
-      await subscribersServices(dataForm);
+      await subscribersServices(data);
       setSuccessMessage("Cảm ơn bạn đã đăng ký!");
       reset();
     } catch (error) {
       setSuccessMessage("");
+
       if (error instanceof AxiosError) {
         if (error.response?.data?.code === "23505") {
           setError("email", {
@@ -53,49 +55,60 @@ const Section5 = () => {
   };
 
   return (
-    <div className="flex flex-col items-center relative translate-y-[35px]">
-      <div className="relative">
-        <h1 className="text-[45px] font-semibold maxMd:text-[30px] text-black max-w-[849px] text-center">
+    <section className="w-full bg-gradient-to-b from-white to-gray-50 mb-[100px]">
+      <div className="text-center container">
+        {/* TITLE */}
+        <h2 className="text-[30px] md:text-[45px] font-semibold text-[#1F1F1F] leading-tight">
           Subscribe to Our Newsletter for Design Insights
-        </h1>
-        <p className="text-[18px] font-medium text-gray-500 leading-[165.2%] max-w-[770px] text-center mt-[30px]">
+        </h2>
+
+        <p className="text-[16px] md:text-[18px] text-[#6B6B6B] mt-[25px] leading-relaxed">
           Be the first to discover trends, inspirations, and special offers as
-          we bring the world of design directly to your inbox
+          we bring the world of design directly to your inbox.
         </p>
 
-        <div className="absolute bottom-[-35px] text-center left-1/2 -translate-x-1/2">
-          {successMessage && (
-            <p className="text-green-600 mt-2 font-medium ">{successMessage}</p>
-          )}
-          {errors.email && (
-            <p className="" style={{ color: "red" }}>
-              {errors.email.message}
-            </p>
-          )}
+        {/* FORM CARD */}
+        <div className="mt-[50px] bg-white shadow-lg rounded-[20px] p-[20px] md:p-[30px]">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col md:flex-row gap-[15px]"
+          >
+            {/* INPUT */}
+            <div className="relative flex-1">
+              <EnvelopeIcon className="w-5 h-5 absolute left-[18px] top-1/2 -translate-y-1/2 text-[#9CA3AF]" />
+
+              <Input
+                {...register("email", {
+                  onChange: () => setSuccessMessage(""),
+                })}
+                placeholder="Enter your email address"
+                className="w-full h-[55px] pl-[45px] pr-[15px] rounded-[12px] bg-[#F3F3F3] text-[16px] focus:outline-none focus:ring-2 focus:ring-[#1F1F1F]"
+              />
+            </div>
+
+            {/* BUTTON */}
+            <button
+              disabled={isSubmitting}
+              type="submit"
+              className="h-[55px] px-[35px] rounded-[12px] bg-[#1F1F1F] text-white font-semibold text-[16px] hover:bg-black transition disabled:opacity-60"
+            >
+              {isSubmitting ? "Đang gửi..." : "Subscribe"}
+            </button>
+          </form>
+
+          {/* MESSAGE */}
+          <div className="mt-[20px] min-h-[24px]">
+            {successMessage && (
+              <p className="text-green-600 font-medium">{successMessage}</p>
+            )}
+
+            {errors.email && (
+              <p className="text-red-500 font-medium">{errors.email.message}</p>
+            )}
+          </div>
         </div>
       </div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="relative max-w-[979px] h-[75px]  w-full mt-[50px]"
-      >
-        <EnvelopeIcon className=" w-[24px] h-[24px] absolute left-[30px] top-1/2 -translate-y-1/2" />
-        <Input
-          {...register("email", {
-            onChange: () => setSuccessMessage(""),
-          })}
-          placeholder="Enter your email address"
-          className="w-full h-full text-[18px] bg-white font-medium pl-[70px] pr-[60%] rounded-[4px]"
-        />
-
-        <button
-          disabled={isSubmitting}
-          type="submit"
-          className="bg-[#1F1F1F] text-white -translate-y-1/2 px-[50px] h-[50px] absolute top-1/2 right-[10px] rounded-[4px] text-[18px] font-semibold"
-        >
-          {isSubmitting ? "Đang gửi..." : "Subscribe"}
-        </button>
-      </form>
-    </div>
+    </section>
   );
 };
 

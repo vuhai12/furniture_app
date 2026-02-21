@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import logo from "@assets/Footer/logo.svg";
 import facebook from "@assets/Footer/facebook.svg";
 import twitter from "@assets/Footer/twitter.svg";
@@ -8,103 +7,77 @@ import linked from "@assets/Footer/linked.svg";
 const dataFooter = [
   {
     title: "Our Service",
-    item1: "Interior design",
-    item2: "Outdoor design",
-    item3: "Lightning design",
-    item4: "Office design",
+    items: [
+      "Interior design",
+      "Outdoor design",
+      "Lighting design",
+      "Office design",
+    ],
   },
   {
     title: "About Us",
-    item1: "Reviews",
-    item2: "Careers",
-    item3: "Pricing",
-    item4: "Press inquires",
+    items: ["Reviews", "Careers", "Pricing", "Press inquiries"],
   },
   {
     title: "Contact Us",
-    item1: "info@vivadecor.com",
-    item2: "Design Avenue Cityville, CA 90210 United States",
+    items: [
+      "info@vivadecor.com",
+      "Design Avenue Cityville, CA 90210 United States",
+    ],
   },
 ];
 
 const Footer = () => {
-  const [innerWidth, setInnerWidth] = useState(0);
-  useEffect(() => {
-    const resizeUpdate = () => {
-      setInnerWidth(document.documentElement.clientWidth);
-    };
-    resizeUpdate();
-    window.addEventListener("resize", resizeUpdate);
-    return () => {
-      window.removeEventListener("resize", resizeUpdate);
-    };
-  }, []);
   return (
-    <>
-      <div
-        className="bg-[#1F1F1F]  "
-        style={{
-          width: `${innerWidth}px`,
-          marginLeft: `calc(50% - ${innerWidth / 2}px)`,
-        }}
-      >
-        <div className="flex maxMd:flex-col justify-between py-[100px] mx-auto xl:max-w-[1200px] md:px-[100px] maxMd:px-[20px]">
-          <div className="flex flex-col gap-[50px] maxMd:gap-[30px]">
-            <img
-              src={logo}
-              alt="logo"
-              className="w-[177px] h-[48px] object-cover "
-            />
-            <p className="max-w-[322px] text-[18px] font-medium text-[#D1D1D1]">
-              VivaDecor your premier destination for luxury and modern interior
-              design
+    <footer className="bg-[#1F1F1F] text-white">
+      <div className="container py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Logo & Description */}
+          <div className="flex flex-col gap-6">
+            <img src={logo} alt="logo" className="w-[160px] object-contain" />
+
+            <p className="text-gray-400 text-[16px] leading-relaxed max-w-sm">
+              VivaDecor – your premier destination for luxury and modern
+              interior design.
             </p>
-            <ul className="flex gap-[26px]">
-              <li className="w-[36px] h-[36px] bg-[#313131] flex items-center justify-center">
-                <img src={facebook} alt="facebook" />
-              </li>
-              <li className="w-[36px] h-[36px] bg-[#313131] flex items-center justify-center">
-                <img src={twitter} alt="twitter" />
-              </li>
-              <li className="w-[36px] h-[36px] bg-[#313131] flex items-center justify-center">
-                <img src={instar} alt="instar" />
-              </li>
-              <li className="w-[36px] h-[36px] bg-[#313131] flex items-center justify-center">
-                <img src={linked} alt="linked" />
-              </li>
-            </ul>
+
+            <div className="flex gap-4">
+              {[facebook, twitter, instar, linked].map((icon, index) => (
+                <div
+                  key={index}
+                  className="w-9 h-9 bg-[#313131] rounded-md flex items-center justify-center hover:bg-white hover:scale-105 transition-all duration-300 cursor-pointer"
+                >
+                  <img src={icon} alt="social" className="w-4" />
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="flex justify-between maxMd:justify-start maxMd:mt-[30px]  maxMd:gap-[30px] gap-20 maxMd:flex-col">
-            {dataFooter.map((item, index) => {
-              return (
-                <>
-                  <div
-                    className="flex flex-col gap-6 max-w-[257px]"
-                    key={index}
+
+          {/* Footer Links */}
+          {dataFooter.map((section, index) => (
+            <div key={index}>
+              <h5 className="text-lg font-semibold mb-6">{section.title}</h5>
+
+              <ul className="flex flex-col gap-4">
+                {section.items.map((item, idx) => (
+                  <li
+                    key={idx}
+                    className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer text-sm leading-relaxed"
                   >
-                    <h5 className="text-[18px] font-semibold text-white break-all">
-                      {item.title}
-                    </h5>
-                    <p className="text-[#D1D1D1] text-[16px] font-medium break-all">
-                      {item.item1}
-                    </p>
-                    <p className="text-[#D1D1D1] text-[16px] font-medium break-all">
-                      {item.item2}
-                    </p>
-                    <p className="text-[#D1D1D1] text-[16px] font-medium break-all">
-                      {item?.item3}
-                    </p>
-                    <p className="text-[#D1D1D1] text-[16px] font-medium break-all">
-                      {item?.item4}
-                    </p>
-                  </div>
-                </>
-              );
-            })}
-          </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-[#2C2C2C] mt-16 pt-6 text-center text-gray-500 text-sm">
+          © {new Date().getFullYear()} VivaDecor. All rights reserved.
         </div>
       </div>
-    </>
+    </footer>
   );
 };
 

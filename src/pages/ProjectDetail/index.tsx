@@ -19,60 +19,84 @@ const ProjectDetail = () => {
       }
     | undefined
   >(undefined);
+
   const getProjectDetail = async () => {
     try {
       const data = await getProjectDetailService(projectId);
       setInfoProjectDetail(data.data[0]);
     } catch (error) {}
   };
+
   useEffect(() => {
     getProjectDetail();
   }, []);
+
+  if (!infoProjectDetail) return null;
+
   return (
     <ProjectLayout>
-      {infoProjectDetail != undefined && (
-        <div className="mb-[50px]">
-          <h1 className="text-[35px] text-black font-semibold">
-            {infoProjectDetail.title}
-          </h1>
-          <div className="flex gap-[50px] mt-[30px] md:flex-row flex-col">
-            <div className="flex-1 flex flex-col gap-[10px]">
-              <div className="flex flex-col gap-[20px] border-b-[1px] border-gray-400 py-[10px]">
-                <h3 className="text-black text-[18px] font-semibold">
-                  ADDRESS
-                </h3>
-                <p className="text-gray-500 text-[16px]">
-                  {infoProjectDetail.address}
-                </p>
-              </div>
-              <div className="flex flex-col gap-[20px] border-b-[1px] border-gray-400 py-[10px]">
-                <h3 className="text-black text-[16px] font-semibold">YEAR</h3>
-                <p className="text-gray-500 text-[16px]">
-                  {infoProjectDetail.year}
-                </p>
-              </div>
-              <div className="flex flex-col gap-[20px] border-b-[1px] border-gray-400 py-[10px]">
-                <h3 className="text-black text-[16px] font-semibold">STATUS</h3>
-                <p className="text-gray-500 text-[16px]">
-                  {infoProjectDetail.status}
-                </p>
-              </div>
+      <div className="px-4 sm:px-6 lg:px-0 py-10 max-w-6xl mx-auto">
+        {/* TITLE */}
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+          {infoProjectDetail.title}
+        </h1>
+
+        {/* INFO + DESCRIPTION */}
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {/* LEFT INFO */}
+          <div className="space-y-6">
+            <div className="border-b border-gray-200 pb-5">
+              <p className="text-sm tracking-widest text-gray-400 uppercase">
+                Address
+              </p>
+              <p className="mt-2 text-gray-800 text-base">
+                {infoProjectDetail.address}
+              </p>
             </div>
-            <div className="flex-1 text-[15px] text-gray-500">
-              <p>{infoProjectDetail.description}</p>
+
+            <div className="border-b border-gray-200 pb-5">
+              <p className="text-sm tracking-widest text-gray-400 uppercase">
+                Year
+              </p>
+              <p className="mt-2 text-gray-800 text-base">
+                {infoProjectDetail.year}
+              </p>
+            </div>
+
+            <div className="border-b border-gray-200 pb-5">
+              <p className="text-sm tracking-widest text-gray-400 uppercase">
+                Status
+              </p>
+              <p className="mt-2 text-gray-800 text-base">
+                {infoProjectDetail.status}
+              </p>
             </div>
           </div>
-          <div className="flex flex-col gap-[20px] mt-[20px]">
-            {infoProjectDetail.images.map((item) => {
-              return (
-                <div className="h-[500px] w-full">
-                  <img src={item} className="object-cover w-full h-full" />
-                </div>
-              );
-            })}
+
+          {/* RIGHT DESCRIPTION */}
+          <div>
+            <p className="text-gray-600 leading-relaxed text-[15px] sm:text-base">
+              {infoProjectDetail.description}
+            </p>
           </div>
         </div>
-      )}
+
+        {/* IMAGE GALLERY */}
+        <div className="mt-16 space-y-8">
+          {infoProjectDetail.images.map((item, index) => (
+            <div
+              key={index}
+              className="w-full rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300"
+            >
+              <img
+                src={item}
+                alt={`project-image-${index}`}
+                className="w-full h-[250px] sm:h-[400px] lg:h-[550px] object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </ProjectLayout>
   );
 };

@@ -14,14 +14,14 @@ export const getProjectsByCategoriesServices = async (
   category_id: string | null | undefined,
   keyword: string | undefined,
   from: number,
-  to: number
+  to: number,
 ) => {
   try {
     const data = await getProjectsByCategoriesApi(
       category_id,
       keyword,
       from,
-      to
+      to,
     );
     return data;
   } catch (error) {}

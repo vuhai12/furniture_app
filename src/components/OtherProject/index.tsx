@@ -31,7 +31,7 @@ const OtherProject = () => {
 
   const handlePreSlide = () => {
     setCurrentSlide(
-      (pre) => (pre - 1 + listProject.length) % listProject.length
+      (pre) => (pre - 1 + listProject.length) % listProject.length,
     );
   };
 
@@ -50,7 +50,7 @@ const OtherProject = () => {
   }, [listProject.length]);
 
   return (
-    <div className="py-[50px]">
+    <div className="pb-[50px]">
       <div className="flex justify-between items-center">
         <h3 className="text-black text-[33px] font-semibold">Other Projects</h3>
         <div className="flex gap-[10px]">
@@ -90,7 +90,7 @@ const OtherProject = () => {
                         ? ` calc((100% - 60px)/3)`
                         : "100%",
                   }}
-                  className="flex-shrink-0 relative cursor-pointer"
+                  className="flex-shrink-0 relative cursor-pointer rounded-[20px] overflow-hidden"
                 >
                   <img
                     src={item.cover_image}

@@ -5,33 +5,33 @@ import avatar3 from "@assets/Section4/avatar3.svg";
 import avatar4 from "@assets/Section4/avatar4.svg";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
-import classNames from "classnames";
+import { motion, AnimatePresence } from "framer-motion";
 
 const dataSection4 = [
   {
     id: 1,
-    text: "Working with your design team was an absolute pleasure. The attention to detail and creativity exceeded my expectations.  Thank you for making my home beautiful!",
+    text: "Working with your design team was an absolute pleasure. The attention to detail and creativity exceeded my expectations. Thank you for making my home beautiful!",
     avatar: avatar1,
     name: "Sophie Carter",
     address: "New York, USA",
   },
   {
     id: 2,
-    text: "Exceptional service! From the initial consultation to the final reveal, your team demonstrated professionalism and a keen eye for design. Highly recommend!",
+    text: "Exceptional service! From the initial consultation to the final reveal, your team demonstrated professionalism and a keen eye for design.",
     avatar: avatar2,
     name: "James Bennett",
     address: "Toronto, Canada",
   },
   {
     id: 3,
-    text: "Outstanding service from start to finish. The team was attentive, creative, and delivered results that exceeded expectations. Truly a pleasure to work with.",
+    text: "Outstanding service from start to finish. The team was attentive, creative, and delivered results that exceeded expectations.",
     avatar: avatar3,
     name: "Maria Sheferd",
     address: "Amsterdam, Netherlands",
   },
   {
     id: 4,
-    text: "An exceptional experience throughout the entire project. The team combined strong design sensibility with clear communication, delivering a result we’re truly proud of.",
+    text: "An exceptional experience throughout the entire project. The team combined strong design sensibility with clear communication.",
     avatar: avatar4,
     name: "Mark Jones",
     address: "Barcelona, Spain",
@@ -39,108 +39,98 @@ const dataSection4 = [
 ];
 
 const Section4 = () => {
-  const [currentReview, setCurrentReview] = useState<number>(0);
+  const [current, setCurrent] = useState(0);
+
   useEffect(() => {
-    if (dataSection4.length === 0) return;
-    const intervalId = setInterval(() => {
-      setCurrentReview((pre) => (pre + 1) % dataSection4.length);
-    }, 3000);
-    return () => {
-      clearInterval(intervalId);
-    };
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % dataSection4.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
   }, []);
-  const handleChangeReviews = (action: string) => {
-    if (action == "Pre") {
-      setCurrentReview((pre) => (pre + 1) % dataSection4.length);
-    }
-    if (action == "Next") {
-      setCurrentReview(
-        (pre) => (pre - 1 + dataSection4.length) % dataSection4.length
-      );
-    }
+
+  const handlePrev = () => {
+    setCurrent((prev) => (prev === 0 ? dataSection4.length - 1 : prev - 1));
   };
+
+  const handleNext = () => {
+    setCurrent((prev) => (prev + 1) % dataSection4.length);
+  };
+
   return (
-    <>
-      <div className="flex maxMd:flex-col-reverse gap-[100px] maxMd:gap-[30px] min-h-[600px]  relative w-full">
-        <div className="flex flex-col gap-4 flex-1 ">
-          <div className="flex-1 maxMd:hidden">
-            <img
-              src={image4}
-              alt="image4"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="hidden gap-[38px] md:flex maxMd:gap-[30px] maxMd:justify-end">
-            <ArrowLeftIcon
-              onClick={() => handleChangeReviews("Pre")}
-              className="h-[50px] maxMd:w-[45px] maxMd:h-[45px] w-[50px] p-3 bg-gray-200 text-[#464646] cursor-pointer"
-            />
-            <ArrowRightIcon
-              onClick={() => handleChangeReviews("Next")}
-              className="h-[50px] maxMd:w-[45px] maxMd:h-[45px] w-[50px] p-3 bg-gray-200 text-[#464646] cursor-pointer"
-            />
-          </div>
+    <section className="w-full bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+      <div className=" grid lg:grid-cols-2 gap-[80px] items-center container">
+        {/* IMAGE */}
+        <div className="hidden lg:block">
+          <img
+            src={image4}
+            alt="testimonial"
+            className="w-full h-[550px] object-cover rounded-[24px] shadow-xl"
+          />
         </div>
-        <div className="flex-1 flex flex-col gap-[30px] md:gap-0">
-          <h1 className="text-[40px] maxMd:text-[30px] maxMd:text-center font-semibold">
+
+        {/* CONTENT */}
+        <div className="flex flex-col gap-[40px]">
+          <h2 className="text-[32px] md:text-[45px] font-semibold text-[#1F1F1F] leading-tight">
             What Our Customers Say About Us
-          </h1>
-          <div className="md:hidden gap-[38px] flex maxMd:gap-[30px] maxMd:justify-end">
-            <ArrowLeftIcon
-              onClick={() => handleChangeReviews("Pre")}
-              className="h-[50px] maxMd:w-[45px] maxMd:h-[45px] w-[50px] p-3 bg-gray-200 text-[#464646] cursor-pointer"
-            />
-            <ArrowRightIcon
-              onClick={() => handleChangeReviews("Next")}
-              className="h-[50px] maxMd:w-[45px] maxMd:h-[45px] w-[50px] p-3 bg-gray-200 text-[#464646] cursor-pointer"
-            />
-          </div>
-          <div className="maxMd:static absolute bottom-0 maxMd:pl-0 top-[25%]  pl-[30px] left-[180px] right-0 overflow-hidden">
-            <div
-              style={{
-                transform: ` translateX(calc(-${currentReview} * (25% + 10px)))`,
-                transition: "transform 0.5s ease",
-              }}
-              className={classNames(
-                "flex w-[calc(400%+40px)] md:w-[calc(200%+40px)] h-full gap-[40px]"
-              )}
-            >
-              {dataSection4.map((item, index) => {
-                return (
-                  <div
-                    className={classNames(
-                      "bg-[#1F1F1F] flex-1 text-[18px] flex flex-col gap-[30px] justify-center p-[50px]"
-                    )}
-                    key={index}
-                  >
-                    <p className="text-white  font-medium break-all line-clamp-3 md:line-clamp-5">
-                      {item.text}
-                    </p>
-                    <div className="flex gap-[24px] items-center md:flex-row flex-col">
-                      <div className="w-[72px] h-[72px]">
-                        <img
-                          src={item.avatar}
-                          alt="avatar1"
-                          className="object-cover w-full h-full"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-white break-all">
-                          {item.name}
-                        </p>
-                        <p className="font-medium text-[#929292] mt-[14px] break-all">
-                          {item.address}
-                        </p>
-                      </div>
-                    </div>
+          </h2>
+
+          {/* REVIEW CARD */}
+          <div className="relative min-h-[260px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={dataSection4[current].id}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.5 }}
+                className="bg-[#1F1F1F] text-white p-[40px] md:p-[50px] rounded-[20px] shadow-lg flex flex-col gap-[30px]"
+              >
+                <p className="text-[16px] md:text-[18px] leading-relaxed text-[#E5E5E5]">
+                  {dataSection4[current].text}
+                </p>
+
+                <div className="flex items-center gap-[20px]">
+                  <div className="w-[60px] h-[60px] rounded-full overflow-hidden">
+                    <img
+                      src={dataSection4[current].avatar}
+                      alt="avatar"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                );
-              })}
-            </div>
+
+                  <div>
+                    <p className="font-semibold text-white">
+                      {dataSection4[current].name}
+                    </p>
+                    <p className="text-[#A0A0A0] text-[14px]">
+                      {dataSection4[current].address}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* NAVIGATION */}
+          <div className="flex gap-[20px]">
+            <button
+              onClick={handlePrev}
+              className="w-[50px] h-[50px] rounded-full bg-white shadow-md flex items-center justify-center hover:bg-[#1F1F1F] hover:text-white transition"
+            >
+              <ArrowLeftIcon className="w-5 h-5" />
+            </button>
+
+            <button
+              onClick={handleNext}
+              className="w-[50px] h-[50px] rounded-full bg-white shadow-md flex items-center justify-center hover:bg-[#1F1F1F] hover:text-white transition"
+            >
+              <ArrowRightIcon className="w-5 h-5" />
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

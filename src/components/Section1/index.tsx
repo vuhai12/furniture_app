@@ -45,52 +45,62 @@ const item = {
 
 const Section1 = () => {
   return (
-    <div className="w-full max-w-none mx-auto">
-      {/* Title */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-        className="flex gap-2 items-center"
-      >
-        <hr className="w-[60px] h-[5px] bg-[#1F1F1F]" />
-        <h2 className="text-[45px] maxMd:text-[30px] font-semibold ml-[34px]">
-          Our Services
-        </h2>
-      </motion.div>
+    <section className="w-full  bg-gradient-to-b from-white to-gray-50">
+      <div className="container">
+        {/* TITLE */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="flex items-center gap-4 justify-center lg:justify-start"
+        >
+          <div className="w-12 h-[3px] bg-black" />
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold">
+            Our Services
+          </h2>
+        </motion.div>
 
-      {/* Services */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="grid grid-cols-1 sm:grid-cols-[1fr_1fr_1fr] gap-[50px] px-[20px] mt-[60px]"
-      >
-        {servicesData.map((itemData, index) => (
-          <motion.div
-            key={index}
-            variants={item}
-            whileHover={{ y: -8, scale: 1.02 }}
-            className="flex gap-[20px] sm:flex-row flex-col cursor-pointer"
-          >
-            <div className="flex-1">
-              <img src={itemData.image} className="object-contain" />
-            </div>
+        {/* SERVICES GRID */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16"
+        >
+          {servicesData.map((service, index) => (
+            <motion.div
+              key={index}
+              variants={item}
+              whileHover={{ y: -10 }}
+              className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
+            >
+              {/* ICON */}
+              <div className="w-14 h-14 flex items-center justify-center bg-gray-100 rounded-xl group-hover:bg-black transition duration-300">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-8 h-8 object-contain group-hover:invert transition duration-300"
+                />
+              </div>
 
-            <div className="flex-col flex gap-[30px] flex-[5]">
-              <h3 className="text-[25px] font-semibold break-all text-black">
-                {itemData.title}
+              {/* CONTENT */}
+              <h3 className="text-xl font-semibold mt-6 group-hover:text-black transition">
+                {service.title}
               </h3>
-              <p className="text-[15px] font-medium break-all text-gray-500">
-                {itemData.description}
+
+              <p className="text-gray-500 mt-4 text-sm leading-relaxed">
+                {service.description}
               </p>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    </div>
+
+              {/* HOVER LINE */}
+              <div className="mt-6 w-0 h-[2px] bg-black transition-all duration-300 group-hover:w-full"></div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

@@ -6,14 +6,10 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <div className="fixed top-0 bg-white w-[100%] z-[30] border-b-[1px] border-gray-200">
-        <header className="mx-auto xl:max-w-[1200px] md:px-[100px]  maxMd:px-[20px]">
-          <Header />
-        </header>
+        <Header />
       </div>
-      <div className="mx-auto relative xl:max-w-[1200px] md:px-[100px]  maxMd:px-[20px] ">
-        {children}
-        <Footer />
-      </div>
+      {children}
+      <Footer />
     </>
   );
 };

@@ -15,8 +15,8 @@ const Register = ({
 }) => {
   const registerSchema = z.object({
     email: z.string().min(5, "Please enter email").email("Email is invalid"),
-    password: z.string().min(6, "Password must be at least 6 character"),
-    name: z.string().min(3, "Name must be at least 3 character"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    name: z.string().min(3, "Name must be at least 3 characters"),
   });
 
   type RegisterFormData = z.infer<typeof registerSchema>;
@@ -30,6 +30,7 @@ const Register = ({
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
   });
+
   const onSubmit = async (dataFormRegister: RegisterFormData) => {
     try {
       await registerServices(dataFormRegister);
@@ -55,61 +56,83 @@ const Register = ({
   return (
     <>
       <Overlay onClick={() => setIsShowPopupRegister(false)} />
-      <AuthLayout title="Sign Up" onClick={() => setIsShowPopupRegister(false)}>
+
+      <AuthLayout
+        title="Create Account"
+        onClick={() => setIsShowPopupRegister(false)}
+      >
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-[20px]"
+          className="flex flex-col gap-5 w-full max-w-[420px] mx-auto"
         >
-          <div>
+          {/* NAME */}
+          <div className="flex flex-col gap-2">
             <input
               {...register("name")}
-              className="w-full border-[1px] border-black rounded-[10px] p-[10px]"
-              placeholder="Name"
+              type="text"
+              placeholder="Full Name"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 
+              focus:outline-none focus:ring-2 focus:ring-black focus:border-black
+              transition duration-200"
             />
             {errors.name && (
-              <div className="mt-2 rounded-md bg-red-50 px-3 py-2 text-sm text-red-600 border border-red-200">
+              <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600 border border-red-200">
                 {errors.name.message}
               </div>
             )}
           </div>
 
-          <div>
+          {/* EMAIL */}
+          <div className="flex flex-col gap-2">
             <input
               {...register("email")}
-              className="w-full border-[1px] border-black rounded-[10px] p-[10px]"
-              placeholder="Email"
+              type="email"
+              placeholder="Email Address"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 
+              focus:outline-none focus:ring-2 focus:ring-black focus:border-black
+              transition duration-200"
             />
             {errors.email && (
-              <div className="mt-2 rounded-md bg-red-50 px-3 py-2 text-sm text-red-600 border border-red-200">
+              <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600 border border-red-200">
                 {errors.email.message}
               </div>
             )}
           </div>
 
-          <div>
+          {/* PASSWORD */}
+          <div className="flex flex-col gap-2">
             <input
               {...register("password")}
-              className="w-full border-[1px] border-black rounded-[10px] p-[10px]"
+              type="password"
               placeholder="Password"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 
+              focus:outline-none focus:ring-2 focus:ring-black focus:border-black
+              transition duration-200"
             />
             {errors.password && (
-              <div className="mt-2 rounded-md bg-red-50 px-3 py-2 text-sm text-red-600 border border-red-200">
+              <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600 border border-red-200">
                 {errors.password.message}
               </div>
             )}
           </div>
 
+          {/* BUTTON */}
           <button
             disabled={isSubmitting}
             type="submit"
-            className="p-[10px] bg-black text-white rounded-[10px]"
+            className="w-full py-3 rounded-xl bg-black text-white font-medium
+            hover:bg-gray-900 active:scale-[0.98]
+            transition duration-200
+            disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isSubmitting ? "Submitting..." : "Submit"}
+            {isSubmitting ? "Creating..." : "Create Account"}
           </button>
-          <p>
+
+          {/* FOOTER */}
+          <p className="text-sm text-center text-gray-600">
             Already have an account?{" "}
             <span
-              className="underline cursor-pointer"
+              className="underline cursor-pointer hover:text-black transition"
               onClick={handleShowPopupLogin}
             >
               Sign in

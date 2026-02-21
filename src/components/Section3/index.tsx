@@ -1,5 +1,7 @@
 import image3 from "@assets/Section3/image3.jpg";
 import icon1 from "@assets/Section3/icon1.svg";
+import icon2 from "@assets/Section3/icon2.svg";
+import icon3 from "@assets/Section3/icon3.svg";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 
@@ -21,13 +23,13 @@ const dataSection3: StepItem[] = [
     id: 2,
     title: "Craft",
     des: "Through continuous communication and creative exploration, we ensure that brilliance is infused into every aspect of your space — from concept to execution — resulting in a design that is both functional and inspiring.",
-    icon: icon1,
+    icon: icon2,
   },
   {
     id: 3,
     title: "Execute",
     des: "Witness your vision becoming a reality as we execute the design plan with precision. Celebrate the joy of your newly transformed space",
-    icon: icon1,
+    icon: icon3,
   },
 ];
 
@@ -49,19 +51,19 @@ const itemVariant = {
 
 const Section3 = () => {
   return (
-    <div>
+    <div className="container">
       {/* Title */}
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="text-[45px] maxMd:text-[30px] font-semibold text-center max-w-[800px] mx-auto"
+        className="text-[45px] maxMd:text-[30px] font-semibold text-center "
       >
         Designing Your Dream in Three Simple Steps
       </motion.h1>
 
-      <div className="flex gap-[80px] mt-[30px] md:flex-row flex-col-reverse">
+      <div className="flex gap-[80px]  md:flex-row flex-col-reverse">
         {/* Timeline */}
         <motion.div
           variants={container}
@@ -111,7 +113,7 @@ const Section3 = () => {
           viewport={{ once: true }}
           className="flex-1"
         >
-          <img src={image3} className="object-cover h-full" />
+          <img src={image3} className="object-cover h-full rounded-[15px]" />
         </motion.div>
       </div>
     </div>

@@ -24,7 +24,7 @@ const Projects = () => {
   )?.id;
 
   useEffect(() => {
-    // if (!activeCategoryId) return;
+    if (!activeCategoryId) return;
     getProjectByCategoryId();
   }, [activeCategoryId, debounceKeyword]);
 
@@ -52,7 +52,7 @@ const Projects = () => {
             return (
               <div
                 onClick={() => navigate(`/projects/${categorySlug}/${item.id}`)}
-                className="relative h-[230px] z-[98] cursor-pointer flex flex-col justify-end"
+                className="relative h-[230px] z-[98] cursor-pointer flex flex-col justify-end rounded-[20px] overflow-hidden"
               >
                 <img
                   src={item.cover_image}

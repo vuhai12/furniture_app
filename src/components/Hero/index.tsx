@@ -35,105 +35,111 @@ const Hero = () => {
   });
 
   return (
-    <div className="w-full mt-[80px]">
+    <section className="w-full container overflow-hidden">
       {/* TOP */}
-      <div className="flex justify-between gap-[80px] maxMd:flex-col">
+      <div className="flex flex-col lg:flex-row items-center gap-12 xl:gap-20">
+        {/* TEXT */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="xl:flex-[3] lg:flex-1"
+          className="flex-1"
         >
-          <h1 className="xl:text-[80px] lg:text-[55px] md:text-[45px] maxMd:text-[45px] font-semibold">
-            Interior Design
+          <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-semibold leading-tight">
+            Interior <br className="hidden sm:block" />
+            Design
           </h1>
 
-          <p className="text-[18px] maxMd:text-[18px] max-w-[759px] mt-[20px] text-gray-500 font-medium">
+          <p className="mt-6 text-base sm:text-lg max-w-xl text-gray-500 leading-relaxed">
             Step into a world where the art of Interior Design is meticulously
             crafted to bring together timeless elegance and cutting-edge modern
-            innovation, allowing you to transform your living spaces into the
-            epitome of luxury and sophistication.
+            innovation.
           </p>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ delay: 0.3 }}
+            className="mt-8"
+          >
+            <Button
+              path="/projects/office"
+              className="px-6 py-3 text-base rounded-full shadow-lg hover:scale-105 transition"
+            >
+              Start Project
+            </Button>
+          </motion.div>
         </motion.div>
 
+        {/* IMAGE RIGHT */}
         <motion.div
           variants={slideLeft}
           initial="hidden"
           animate="show"
-          className="xl:flex-[2] lg:flex-1 pr-[20px] pt-[20px] relative"
+          className="flex-1 relative"
         >
-          <img
-            src={image1}
-            alt="image1"
-            className="h-auto object-cover w-full relative z-10"
-          />
+          <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl">
+            <img
+              src={image1}
+              alt="image1"
+              className="w-full h-full object-cover hover:scale-105 transition duration-700"
+            />
+          </div>
+
           <img
             src={rectangle}
             alt="rectangle"
-            className="absolute top-0 right-0 z-1"
+            className="absolute -top-6 -right-6 opacity-40 hidden md:block"
           />
         </motion.div>
       </div>
 
       {/* BOTTOM */}
-      <div className="flex mt-[20px] lg:gap-[30px] xl:gap-[50px] w-full maxMd:flex-col-reverse">
-        <div className="flex-1 flex-col flex gap-[30px] maxMd:flex-col-reverse">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            transition={{ delay: 0.2 }}
-          >
-            <Button
-              path="/projects/office"
-              className="text-[18px] inline-block px-[20px] py-[10px]"
-            >
-              Start Project
-            </Button>
-          </motion.div>
-
-          {/* STATS */}
-          <motion.div
-            ref={ref}
-            variants={fadeUp}
-            initial="hidden"
-            animate={inView ? "show" : "hidden"}
-            className="flex maxMd:mt-[50px] flex-wrap gap-[30px] maxMd:justify-between font-normal w-full"
-          >
-            {statsData.map((item, index) => (
-              <div key={index}>
-                <div className="xl:text-[60px] text-[50px] maxMd:text-[30px] font-medium text-black">
-                  {inView && (
-                    <CountUp end={item.value} duration={2} suffix="+" />
-                  )}
-                </div>
-                <p className="xl:text-[22px] lg:text-[18px] maxMd:text-[15px] text-gray-500">
-                  {item.label}
-                </p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
+      <div className="flex flex-col-reverse lg:flex-row items-center gap-12 xl:gap-20 mt-16">
+        {/* IMAGE LEFT */}
         <motion.div
           variants={slideRight}
           initial="hidden"
           animate="show"
-          className="flex-1 relative w-full"
+          className="flex-1 relative"
         >
-          <img
-            src={image2}
-            alt="image2"
-            className="pt-[20px] pl-[20px] h-full w-full z-10 object-cover relative"
-          />
+          <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl">
+            <img
+              src={image2}
+              alt="image2"
+              className="w-full h-full object-cover hover:scale-105 transition duration-700"
+            />
+          </div>
+
           <img
             src={rectangle}
             alt="rectangle"
-            className="absolute top-0 left-0 z-1"
+            className="absolute -bottom-6 -left-6 opacity-40 hidden md:block"
           />
         </motion.div>
+
+        {/* STATS */}
+        <motion.div
+          ref={ref}
+          variants={fadeUp}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-8 text-center lg:text-left"
+        >
+          {statsData.map((item, index) => (
+            <div key={index}>
+              <div className="text-3xl sm:text-4xl xl:text-5xl font-semibold">
+                {inView && <CountUp end={item.value} duration={2} suffix="+" />}
+              </div>
+              <p className="mt-2 text-sm sm:text-base text-gray-500">
+                {item.label}
+              </p>
+            </div>
+          ))}
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

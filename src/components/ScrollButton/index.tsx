@@ -3,18 +3,14 @@ import { ArrowUpIcon } from "@heroicons/react/24/solid";
 
 const ScrollButton = () => {
   const [showButton, setShowButton] = useState(false);
+
   useEffect(() => {
     const updateHeight = () => {
-      if (window.scrollY > 10) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
+      setShowButton(window.scrollY > 200);
     };
+
     window.addEventListener("scroll", updateHeight);
-    return () => {
-      window.removeEventListener("scroll", updateHeight);
-    };
+    return () => window.removeEventListener("scroll", updateHeight);
   }, []);
 
   const handleClick = () => {
@@ -23,17 +19,26 @@ const ScrollButton = () => {
       behavior: "smooth",
     });
   };
+
   return (
-    <div>
-      {showButton && (
-        <button
-          onClick={handleClick}
-          className="fixed bottom-[50px] right-[50px] z-[90] p-[20px] bg-black rounded-[10px]"
-        >
-          <ArrowUpIcon className="w-5 h-5 text-white font-semibold" />
-        </button>
-      )}
-    </div>
+    <button
+      onClick={handleClick}
+      className={`
+        fixed bottom-6 right-6 md:bottom-10 md:right-10
+        z-50
+        w-12 h-12 md:w-14 md:h-14
+        flex items-center justify-center
+        rounded-full
+        bg-black text-white
+        shadow-lg
+        transition-all duration-300
+        hover:scale-110 hover:bg-gray-800
+        active:scale-95
+        ${showButton ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"}
+      `}
+    >
+      <ArrowUpIcon className="w-5 h-5 md:w-6 md:h-6" />
+    </button>
   );
 };
 

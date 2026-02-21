@@ -1,29 +1,25 @@
 import { useEffect, useState } from "react";
 import logo from "@assets/Logo - White.svg";
-import { UserCircle } from "lucide-react";
+import {
+  UserCircle,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  X,
+} from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
-import { X } from "lucide-react";
 import Login from "@components/Auth/Login";
 import Register from "@components/Auth/Register";
 import classNames from "classnames";
 import { getCategoriesServices } from "@services/categories.services";
 import { useApp } from "../../context/AppContext";
 
-const SideBarMenu = ({
-  isShowSidebar,
-  setIsShowSidebar,
-}: {
-  isShowSidebar: boolean;
-  setIsShowSidebar: (isShowSidebar: boolean) => void;
-}) => {
+const SideBarMenu = () => {
   const [isShowPopup, setIsShowPopup] = useState(false);
   const [isShowPopupRegister, setIsShowPopupRegister] = useState(false);
-  const handleShowPoup = () => {
-    setIsShowPopup(true);
-  };
+
   const { setListCategories, listCategories } = useApp();
 
   const getCategories = async () => {
@@ -36,71 +32,81 @@ const SideBarMenu = ({
   }, []);
 
   return (
-    <div className="overflow-auto p-[20px] flex  flex-col gap-[20px] text-gray-400 bg-black text-[14px] w-[75%] fixed sm:w-[250px] inset-0">
-      {isShowSidebar && (
-        <X
-          className="w-4 h-4 text-white absolute top-[10px] right-[10px] cursor-pointer"
-          onClick={() => setIsShowSidebar(false)}
-        />
-      )}
-      <div className="flex flex-col gap-[20px]  items-center justify-center">
-        <Link to={"/"} className="w-[120px] cursor-pointer">
-          <img src={logo} />
+    <aside className="fixed inset-y-0 left-0 z-50 w-[280px] bg-[#0f0f0f] border-r border-gray-800 flex flex-col">
+      {/* Header */}
+      <div className="px-6 pt-8 pb-6 border-b border-gray-800 flex flex-col items-center gap-6">
+        <Link to="/" className="block">
+          <img src={logo} className="w-[150px]" alt="logo" />
         </Link>
-        <div className="relative items-center flex md:hidden">
-          <MagnifyingGlassIcon className="w-5 h-5 text-gray-400 absolute left-[8px]" />
+
+        {/* Search */}
+        <div className="relative w-full md:hidden">
+          <MagnifyingGlassIcon className="w-5 h-5 text-gray-500 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
-            placeholder="Search"
-            className="text-[14px] py-[8px] w-full pl-[30px] border-gray-400 border-[1px] rounded-[10px]"
+            placeholder="Search..."
+            className="w-full py-2.5 pl-10 pr-4 rounded-lg bg-[#1a1a1a] border border-gray-700 focus:border-white focus:outline-none text-sm text-white placeholder-gray-500 transition"
           />
         </div>
+
+        {/* Sign In */}
         <div
-          className="flex gap-[10px] cursor-pointer md:hidden"
-          onClick={handleShowPoup}
+          onClick={() => setIsShowPopup(true)}
+          className="md:hidden flex items-center gap-3 cursor-pointer text-gray-400 hover:text-white transition"
         >
-          <UserCircle className="w-6 h-6 text-white" />
-          <p className="text-[16px]">Sign In</p>
+          <UserCircle className="w-6 h-6" />
+          <span className="text-sm tracking-wide">Sign In</span>
         </div>
       </div>
-      <div className="flex flex-col gap-[20px]">
+
+      {/* Categories */}
+      <div className="flex-1 overflow-y-auto modern-scroll px-4 py-6 space-y-2">
         {listCategories.length > 0 &&
-          listCategories?.map((item) => {
-            return (
-              <NavLink to={`/projects/${item.slug}`}>
-                {({ isActive }) => {
-                  return (
-                    <div className="relative p-[10px] ml-[-20px] cursor-pointer flex gap-[8px] items-center justify-center">
-                      <p
-                        className={classNames(
-                          isActive
-                            ? "text-white font-semibold"
-                            : "text-gray-400"
-                        )}
-                      >
-                        {item.name.toUpperCase()}
-                      </p>
-                      {isActive && (
-                        <div className="absolute left-0 w-[5px] h-full bg-white text-white"></div>
-                      )}
-                    </div>
-                  );
-                }}
-              </NavLink>
-            );
-          })}
+          listCategories.map((item) => (
+            <NavLink key={item.slug} to={`/projects/${item.slug}`}>
+              {({ isActive }) => (
+                <div
+                  className={classNames(
+                    "group relative px-4 py-3 rounded-lg cursor-pointer transition-all duration-200",
+                    "hover:bg-[#1a1a1a]",
+                    isActive && "bg-[#1a1a1a]",
+                  )}
+                >
+                  <p
+                    className={classNames(
+                      "text-sm tracking-wider transition-all",
+                      isActive
+                        ? "text-white font-semibold"
+                        : "text-gray-400 group-hover:text-white",
+                    )}
+                  >
+                    {item.name.toUpperCase()}
+                  </p>
+
+                  {/* Active bar */}
+                  {isActive && (
+                    <div className="absolute left-0 top-2 bottom-2 w-[3px] bg-white rounded-r shadow-[0_0_8px_rgba(255,255,255,0.7)]"></div>
+                  )}
+                </div>
+              )}
+            </NavLink>
+          ))}
       </div>
-      <div className="flex gap-[15px] justify-center">
-        <Facebook className="w-4 h-4 text-gray-400" />
-        <Twitter className="w-4 h-4 text-gray-400" />
-        <Instagram className="w-4 h-4 text-gray-400" />
-        <Linkedin className="w-4 h-4 text-gray-400" />
-      </div>
-      <div>
-        <p className="text-gray-400 text-[10px] text-center">
-          VivaDecor your premier destination for luxury and modern interior
-          design
+
+      {/* Footer */}
+      <div className="px-6 py-6 border-t border-gray-800 space-y-5">
+        <div className="flex justify-center gap-5 text-gray-500">
+          <Facebook className="w-4 h-4 hover:text-white transition cursor-pointer" />
+          <Twitter className="w-4 h-4 hover:text-white transition cursor-pointer" />
+          <Instagram className="w-4 h-4 hover:text-white transition cursor-pointer" />
+          <Linkedin className="w-4 h-4 hover:text-white transition cursor-pointer" />
+        </div>
+
+        <p className="text-[11px] text-gray-500 text-center leading-relaxed tracking-wide">
+          VivaDecor – Luxury & Modern Interior Design
         </p>
       </div>
+
+      {/* Popups */}
       {isShowPopup && (
         <Login
           setIsShowPopupRegister={setIsShowPopupRegister}
@@ -113,7 +119,7 @@ const SideBarMenu = ({
           setIsShowPopup={setIsShowPopup}
         />
       )}
-    </div>
+    </aside>
   );
 };
 
