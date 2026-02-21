@@ -6,7 +6,6 @@ import {
   Twitter,
   Instagram,
   Linkedin,
-  X,
 } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";

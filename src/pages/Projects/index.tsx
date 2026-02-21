@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useApp } from "../../context/AppContext";
 import { useDebounce } from "../../hooks/useDebounce";
-import { data, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { getProjectsByCategoriesServices } from "@services/categories.services";
 import ProjectLayout from "@layout/ProjectLayout.tsx";
