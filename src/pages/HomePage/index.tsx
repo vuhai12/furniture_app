@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <>
       <MainLayout>
-        <div className="xl:gap-[150px] mt-[100px] flex flex-col gap-[100px] parent">
+        <div className="xl:gap-[150px] mt-[100px] flex flex-col gap-[100px] parent overflow-hidden">
           <div className="md:section md:short" id="home">
             <Hero />
           </div>
