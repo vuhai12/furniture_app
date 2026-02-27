@@ -55,7 +55,7 @@ const Section5 = () => {
   };
 
   return (
-    <section className="w-full bg-gradient-to-b from-white to-gray-50 mb-[100px]">
+    <section className="w-full mb-[100px] ">
       <div className="text-center container">
         {/* TITLE */}
         <h2 className="text-[30px] md:text-[45px] font-semibold text-[#1F1F1F] leading-tight">
@@ -68,7 +68,7 @@ const Section5 = () => {
         </p>
 
         {/* FORM CARD */}
-        <div className="mt-[50px] bg-white shadow-lg rounded-[20px] p-[20px] md:p-[30px]">
+        <div className="mt-[50px] border-gray-300 border-[1px] bg-white shadow-lg rounded-[20px] p-[20px] md:p-[30px]">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col md:flex-row gap-[15px]"
@@ -103,7 +103,7 @@ const Section5 = () => {
             )}
 
             {errors.email && (
-              <p className="text-red-500 font-medium">{errors.email.message}</p>
+              <p className="text-red-500 font-medium text-left">{errors.email.message}</p>
             )}
           </div>
         </div>

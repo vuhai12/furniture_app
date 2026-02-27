@@ -29,8 +29,8 @@ const dataFooter = [
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1F1F1F] text-white">
-      <div className="container py-16">
+    <footer className="bg-[#1F1F1F] text-white relative z-40">
+      <div className="container pb-16 pt-[100px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Logo & Description */}
           <div className="flex flex-col gap-6">
