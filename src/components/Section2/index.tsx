@@ -49,6 +49,7 @@ const Section2 = () => {
           className="relative"
         >
           <img
+            loading="lazy"
             src={image2}
             alt="Interior"
             className="w-full h-[500px] md:h-[600px] object-cover rounded-[24px] shadow-xl"

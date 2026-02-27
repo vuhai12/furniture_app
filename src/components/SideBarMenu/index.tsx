@@ -35,7 +35,7 @@ const SideBarMenu = () => {
       {/* Header */}
       <div className="px-6 pt-8 pb-6 border-b border-gray-800 flex flex-col items-center gap-6">
         <Link to="/" className="block">
-          <img src={logo} className="w-[150px]" alt="logo" />
+          <img src={logo} className="w-[150px]" alt="logo" loading="lazy" />
         </Link>
 
         {/* Search */}

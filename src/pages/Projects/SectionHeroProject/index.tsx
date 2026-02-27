@@ -44,7 +44,11 @@ const SectionHeroProject = () => {
         {dataSectionHero.map((item) => {
           return (
             <div className="flex-shrink-0 h-full w-full relative">
-              <img src={item.image} className="h-full object-cover w-[100%]" />
+              <img
+                src={item.image}
+                className="h-full object-cover w-[100%]"
+                loading="lazy"
+              />
 
               <div className="absolute inset-0 bg-black bg-opacity-50" />
               <div className="max-w-[500px] absolute top-[60px] left-[50px] text-white flex flex-col gap-[15px]">
@@ -64,7 +68,7 @@ const SectionHeroProject = () => {
             <div
               className={classNames(
                 "h-[5px]  w-[50px]",
-                index == currentSlide ? "bg-white" : "bg-gray-500"
+                index == currentSlide ? "bg-white" : "bg-gray-500",
               )}
             ></div>
           );

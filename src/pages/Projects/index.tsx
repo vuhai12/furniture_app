@@ -55,6 +55,7 @@ const Projects = () => {
                 className="relative h-[230px] z-[98] cursor-pointer flex flex-col justify-end rounded-[20px] overflow-hidden"
               >
                 <img
+                  loading="lazy"
                   src={item.cover_image}
                   className="w-full absolute rounded-[5px] h-full object-cover"
                 />

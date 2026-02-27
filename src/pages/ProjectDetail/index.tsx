@@ -89,6 +89,7 @@ const ProjectDetail = () => {
               className="w-full rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300"
             >
               <img
+                loading="lazy"
                 src={item}
                 alt={`project-image-${index}`}
                 className="w-full h-[250px] sm:h-[400px] lg:h-[550px] object-cover"

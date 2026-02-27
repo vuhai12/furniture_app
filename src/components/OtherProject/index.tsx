@@ -93,6 +93,7 @@ const OtherProject = () => {
                   className="flex-shrink-0 relative cursor-pointer rounded-[20px] overflow-hidden"
                 >
                   <img
+                    loading="lazy"
                     src={item.cover_image}
                     className="h-full w-full object-cover"
                   />

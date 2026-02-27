@@ -55,7 +55,7 @@ const ProjectLayout = ({ children }: { children: ReactNode }) => {
       <div className="lg:flex-[1] flex flex-col overflow-auto">
         <div className="flex justify-between py-[20px] items-center">
           <Link to={"/"} className="w-[120px] cursor-pointer md:hidden">
-            <img src={logo} />
+            <img src={logo} loading="lazy" />
           </Link>
           <Menu
             className="w-6 h-6 text-black lg:hidden cursor-pointer"

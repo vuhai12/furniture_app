@@ -63,6 +63,7 @@ const Section4 = () => {
         {/* IMAGE */}
         <div className="hidden lg:block">
           <img
+            loading="lazy"
             src={image4}
             alt="testimonial"
             className="w-full h-[550px] object-cover rounded-[24px] shadow-xl"
@@ -93,6 +94,7 @@ const Section4 = () => {
                 <div className="flex items-center gap-[20px]">
                   <div className="w-[60px] h-[60px] rounded-full overflow-hidden">
                     <img
+                      loading="lazy"
                       src={dataSection4[current].avatar}
                       alt="avatar"
                       className="w-full h-full object-cover"

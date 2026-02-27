@@ -79,6 +79,7 @@ const Section1 = () => {
               {/* ICON */}
               <div className="w-14 h-14 flex items-center justify-center bg-gray-100 rounded-xl group-hover:bg-black transition duration-300">
                 <img
+                  loading="lazy"
                   src={service.image}
                   alt={service.title}
                   className="w-8 h-8 object-contain group-hover:invert transition duration-300"

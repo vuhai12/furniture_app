@@ -113,7 +113,11 @@ const Section3 = () => {
           viewport={{ once: true }}
           className="flex-1"
         >
-          <img src={image3} className="object-cover h-full rounded-[15px]" />
+          <img
+            src={image3}
+            className="object-cover h-full rounded-[15px]"
+            loading="lazy"
+          />
         </motion.div>
       </div>
     </div>

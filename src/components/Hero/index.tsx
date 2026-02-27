@@ -81,6 +81,7 @@ const Hero = () => {
         >
           <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl">
             <img
+              loading="lazy"
               src={image1}
               alt="image1"
               className="w-full h-full object-cover hover:scale-105 transition duration-700"
@@ -88,6 +89,7 @@ const Hero = () => {
           </div>
 
           <img
+            loading="lazy"
             src={rectangle}
             alt="rectangle"
             className="absolute -top-6 -right-6 opacity-40 hidden md:block"
@@ -106,6 +108,7 @@ const Hero = () => {
         >
           <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl">
             <img
+              loading="lazy"
               src={image2}
               alt="image2"
               className="w-full h-full object-cover hover:scale-105 transition duration-700"
@@ -113,6 +116,7 @@ const Hero = () => {
           </div>
 
           <img
+            loading="lazy"
             src={rectangle}
             alt="rectangle"
             className="absolute -bottom-6 -left-6 opacity-40 hidden md:block"

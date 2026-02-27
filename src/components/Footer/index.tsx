@@ -34,7 +34,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Logo & Description */}
           <div className="flex flex-col gap-6">
-            <img src={logo} alt="logo" className="w-[160px] object-contain" />
+            <img
+              src={logo}
+              alt="logo"
+              className="w-[160px] object-contain"
+              loading="lazy"
+            />
 
             <p className="text-gray-400 text-[16px] leading-relaxed max-w-sm">
               VivaDecor – your premier destination for luxury and modern
@@ -47,7 +52,7 @@ const Footer = () => {
                   key={index}
                   className="w-9 h-9 bg-[#313131] rounded-md flex items-center justify-center hover:bg-white hover:scale-105 transition-all duration-300 cursor-pointer"
                 >
-                  <img src={icon} alt="social" className="w-4" />
+                  <img src={icon} alt="social" className="w-4" loading="lazy" />
                 </div>
               ))}
             </div>
