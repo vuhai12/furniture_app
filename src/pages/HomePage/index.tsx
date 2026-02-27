@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <>
       <MainLayout>
-        <div className="xl:gap-[150px] mt-[100px] flex flex-col gap-[100px] parent overflow-hidden">
+        <div className="xl:gap-[150px] mt-[100px] flex flex-col gap-[50px] md:gap-[100px] parent overflow-hidden">
           <div className="md:section md:short" id="home">
             <Hero />
           </div>
@@ -27,7 +27,7 @@ const HomePage = () => {
             <Section4 />
           </div>
         </div>
-        <div className="relative translate-y-[150px] z-50 ">
+        <div className="relative translate-y-[150px] z-50">
           <Section5 />
         </div>
       </MainLayout>

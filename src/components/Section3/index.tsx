@@ -63,7 +63,7 @@ const Section3 = () => {
         Designing Your Dream in Three Simple Steps
       </motion.h1>
 
-      <div className="flex gap-[80px]  md:flex-row flex-col-reverse">
+      <div className="flex gap-[80px]  md:flex-row flex-col-reverse mt-[50px]">
         {/* Timeline */}
         <motion.div
           variants={container}

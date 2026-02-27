@@ -59,7 +59,7 @@ const Section4 = () => {
 
   return (
     <section className="w-full bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-      <div className=" grid lg:grid-cols-2 gap-[80px] items-center container">
+      <div className="grid lg:grid-cols-2 gap-[80px] items-center container">
         {/* IMAGE */}
         <div className="hidden lg:block">
           <img
