@@ -1,4 +1,4 @@
-import ProjectLayout from "@layout/ProjectLayout.tsx";
+import ProjectLayout from "@layout/ProjectLayout";
 import { getProjectDetailService } from "@services/projectDetail.service";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

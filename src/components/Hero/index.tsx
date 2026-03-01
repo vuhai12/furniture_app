@@ -64,7 +64,7 @@ const Hero = () => {
             className="mt-8"
           >
             <Button
-              path="/projects/office"
+              path="/projects/spa"
               className="px-6 py-3 text-base rounded-full shadow-lg hover:scale-105 transition"
             >
               Start Project

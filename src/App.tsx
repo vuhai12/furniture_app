@@ -1,22 +1,27 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "@pages/HomePage";
-import Projects from "@pages/Projects";
-import ProjectDetail from "@pages/ProjectDetail";
 import ScrollHandler from "@components/ScrollHandler";
+import { Suspense, lazy } from "react";
+import LoadingSpinner from "@components/LoadingSpinner";
 import "./App.css";
+
+const HomePage = lazy(() => import("@pages/HomePage"));
+const Projects = lazy(() => import("@pages/Projects"));
+const ProjectDetail = lazy(() => import("@pages/ProjectDetail"));
 
 function App() {
   return (
     <>
       <ScrollHandler />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/projects/:categorySlug" element={<Projects />} />
-        <Route
-          path="/projects/:categorySlug/:projectId"
-          element={<ProjectDetail />}
-        />
-      </Routes>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/projects/:categorySlug" element={<Projects />} />
+          <Route
+            path="/projects/:categorySlug/:projectId"
+            element={<ProjectDetail />}
+          />
+        </Routes>
+      </Suspense>
     </>
   );
 }

@@ -14,16 +14,23 @@ import Register from "@components/Auth/Register";
 import classNames from "classnames";
 import { getCategoriesServices } from "@services/categories.services";
 import { useApp } from "../../context/AppContext";
+import SidebarLoader from "@components/SidebarLoader";
 
 const SideBarMenu = () => {
   const [isShowPopup, setIsShowPopup] = useState(false);
   const [isShowPopupRegister, setIsShowPopupRegister] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { setListCategories, listCategories } = useApp();
 
   const getCategories = async () => {
-    const data = await getCategoriesServices();
-    setListCategories(data);
+    try {
+      setLoading(true);
+      const data = await getCategoriesServices();
+      setListCategories(data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -59,7 +66,9 @@ const SideBarMenu = () => {
 
       {/* Categories */}
       <div className="flex-1 overflow-y-auto modern-scroll px-4 py-6 space-y-2">
-        {listCategories.length > 0 &&
+        {loading ? (
+          <SidebarLoader />
+        ) : listCategories.length > 0 ? (
           listCategories.map((item) => (
             <NavLink key={item.slug} to={`/projects/${item.slug}`}>
               {({ isActive }) => (
@@ -88,7 +97,12 @@ const SideBarMenu = () => {
                 </div>
               )}
             </NavLink>
-          ))}
+          ))
+        ) : (
+          <p className="text-gray-500 text-sm text-center">
+            No categories found
+          </p>
+        )}
       </div>
 
       {/* Footer */}
