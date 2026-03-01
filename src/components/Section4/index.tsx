@@ -1,8 +1,8 @@
-import image4 from "@assets/Section4/image4.jpg";
-import avatar1 from "@assets/Section4/avatar1.svg";
-import avatar2 from "@assets/Section4/avatar2.svg";
+import image4 from "@assets/Section4/image4.webp";
+import avatar1 from "@assets/Section4/avatar1.webp";
+import avatar2 from "@assets/Section4/avatar2.webp";
 import avatar3 from "@assets/Section4/avatar3.svg";
-import avatar4 from "@assets/Section4/avatar4.svg";
+import avatar4 from "@assets/Section4/avatar4.webp";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
