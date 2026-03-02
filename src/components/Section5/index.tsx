@@ -55,7 +55,7 @@ const Section5 = () => {
   };
 
   return (
-    <section className="w-full mb-[100px]">
+    <section className="w-full">
       <div className="text-center container">
         {/* TITLE */}
         <h2 className="text-[30px] md:text-[45px] font-semibold text-[#1F1F1F] leading-tight">

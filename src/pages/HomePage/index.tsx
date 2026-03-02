@@ -27,7 +27,7 @@ const HomePage = () => {
             <Section4 />
           </div>
         </div>
-        <div className="relative translate-y-[150px] z-50">
+        <div className="relative translate-y-[50px] z-50 mt-[20px] md:mt-[50px]">
           <Section5 />
         </div>
       </MainLayout>

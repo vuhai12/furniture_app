@@ -87,7 +87,7 @@ const Section4 = () => {
                 transition={{ duration: 0.5 }}
                 className="bg-[#1F1F1F] text-white p-[40px] md:p-[50px] rounded-[20px] shadow-lg flex flex-col gap-[30px]"
               >
-                <p className="text-[16px] md:text-[18px] leading-relaxed text-[#E5E5E5]">
+                <p className="text-[16px] md:text-[18px] leading-relaxed line-clamp-3 text-[#E5E5E5]">
                   {dataSection4[current].text}
                 </p>
 
