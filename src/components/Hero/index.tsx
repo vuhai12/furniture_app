@@ -1,6 +1,5 @@
 import image1 from "@assets/Hero/image1.jpeg";
 import image2 from "@assets/Hero/image2.jpg";
-import rectangle from "@assets/Hero/rectangle.svg";
 import Button from "@components/Button";
 
 import CountUp from "react-countup";
@@ -87,13 +86,6 @@ const Hero = () => {
               className="w-full h-full object-cover hover:scale-105 transition duration-700"
             />
           </div>
-
-          <img
-            loading="lazy"
-            src={rectangle}
-            alt="rectangle"
-            className="absolute -top-6 -right-6 opacity-40 hidden md:block"
-          />
         </motion.div>
       </div>
 
@@ -114,13 +106,6 @@ const Hero = () => {
               className="w-full h-full object-cover hover:scale-105 transition duration-700"
             />
           </div>
-
-          <img
-            loading="lazy"
-            src={rectangle}
-            alt="rectangle"
-            className="absolute -bottom-6 -left-6 opacity-40 hidden md:block"
-          />
         </motion.div>
 
         {/* STATS */}
