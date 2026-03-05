@@ -23,7 +23,7 @@ const Button = ({
       onClick={(e) => handleClick(e)}
       className={classNames(
         "bg-black text-white rounded-[10px] font-semibold text-center text-[18px]",
-        className
+        className,
       )}
     >
       <Link to={path}>{children}</Link>

@@ -1,10 +1,10 @@
 import image1 from "@assets/Hero/image1.jpeg";
 import image2 from "@assets/Hero/image2.jpg";
-import Button from "@components/Button";
 
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const statsData = [
   { label: "Project Complete", value: 400 },
@@ -62,12 +62,12 @@ const Hero = () => {
             transition={{ delay: 0.3 }}
             className="mt-8"
           >
-            <Button
-              path="/projects/spa"
-              className="px-6 py-3 text-base rounded-full shadow-lg hover:scale-105 transition"
+            <Link
+              to="/projects/spa"
+              className="px-6 py-3 bg-black text-white font-semibold text-base rounded-full shadow-lg hover:scale-105 transition"
             >
               Start Project
-            </Button>
+            </Link>
           </motion.div>
         </motion.div>
 
